@@ -15,7 +15,7 @@ import Contact from "./Pages/Contact.jsx";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}> {/* ✅ Added this line */}
       {/* Fixed navbar at top */}
       <Navbar />
 
