@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: #050816;
+  color: #e2e8f0;
+  overflow-x: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Custom cursor (pointer devices only) ── */
+@media (pointer: fine) {
+  body, body * { cursor: none !important; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #050816; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4ff 0%, #915eff 100%);
+  border-radius: 4px;
+}
+
+/* ══════════════════════════════════════
+   KEYFRAMES
+══════════════════════════════════════ */
+@keyframes float         { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-15px)} }
+@keyframes blob-move     { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.1)} 66%{transform:translate(-20px,20px) scale(.9)} }
+@keyframes glow-pulse    { 0%,100%{box-shadow:0 0 6px #00ff88,0 0 12px #00ff8840} 50%{box-shadow:0 0 12px #00ff88,0 0 24px #00ff8880} }
+@keyframes spin-slow     { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+@keyframes spin-reverse  { from{transform:rotate(360deg)} to{transform:rotate(0deg)} }
+@keyframes blink         { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes gradient-border{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+@keyframes shimmer-slide { from{background-position:-200% 0} to{background-position:200% 0} }
+@keyframes marquee       { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes fadeInUp      { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+/* ══════════════════════════════════════
+   UTILITY CLASSES
+══════════════════════════════════════ */
+.grad-text {
+  background: linear-gradient(135deg,#00d4ff 0%,#915eff 50%,#ff2d78 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.glass-card {
+  background: rgba(1,7,18,0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,212,255,0.12);
+}
+.neon-cyan-glow   { box-shadow: 0 0 20px rgba(0,212,255,0.3), inset 0 0 20px rgba(0,212,255,0.05); }
+.animate-blob     { animation: blob-move 10s ease-in-out infinite; }
+.animate-spin-slow    { animation: spin-slow    8s linear infinite; }
+.animate-spin-reverse { animation: spin-reverse 6s linear infinite; }
+.animate-blink        { animation: blink        1s ease-in-out infinite; }
+.animate-glow-dot     { animation: glow-pulse   2s ease-in-out infinite; }
+.animate-marquee      { animation: marquee 12s linear infinite; }
+
+/* ══════════════════════════════════════
+   SECTION BASE
+══════════════════════════════════════ */
+section {
+  padding-left: clamp(16px, 4vw, 80px);
+  padding-right: clamp(16px, 4vw, 80px);
+}
+
+/* ══════════════════════════════════════
+   DESKTOP  ≤ 1280px
+══════════════════════════════════════ */
+@media (max-width: 1280px) {
+  .rings-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 28px !important;
+  }
+}
+
+/* ══════════════════════════════════════
+   TABLET  ≤ 1024px
+══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-grid {
+    gap: 40px !important;
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .about-grid {
+    gap: 36px !important;
+  }
+}
+
+/* ══════════════════════════════════════
+   TABLET  ≤ 900px
+══════════════════════════════════════ */
+@media (max-width: 900px) {
+  section { padding-top: 72px !important; padding-bottom: 72px !important; }
+
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 48px !important;
+  }
+  .hero-text-align { align-items: center !important; }
+  .hero-btns       { justify-content: center !important; }
+  .hero-tech       { justify-content: center !important; }
+
+  .about-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .stats-grid    { grid-template-columns: repeat(2, 1fr) !important; }
+  .services-grid { grid-template-columns: 1fr !important; }
+  .projects-grid { grid-template-columns: 1fr !important; }
+  .contact-grid  { grid-template-columns: 1fr !important; }
+  .rings-grid    { grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important; }
+}
+
+/* ══════════════════════════════════════
+   MOBILE  ≤ 768px
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  section { padding-top: 64px !important; padding-bottom: 64px !important; }
+
+  /* Hero */
+  .hero-grid { gap: 36px !important; }
+  .hero-image-size { width: 280px !important; height: 280px !important; }
+
+  /* Services flip cards — taller on mobile so content fits */
+  .services-flip-card { height: 380px !important; }
+
+  /* Skills rope row */
+  .skills-rope-bar { display: none !important; }
+
+  /* Rings */
+  .rings-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 36px !important;
+  }
+  .footer-links-center { align-items: flex-start !important; }
+
+  /* Contact info cards */
+  .contact-info-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ══════════════════════════════════════
+   SMALL MOBILE  ≤ 640px
+══════════════════════════════════════ */
+@media (max-width: 640px) {
+  section { padding-top: 56px !important; padding-bottom: 56px !important; }
+
+  .stats-grid    { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .rings-grid    { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+  .hero-image-size { width: 240px !important; height: 240px !important; }
+  .floating-badge { display: none !important; }
+
+  /* Project cards */
+  .project-card-img { height: 180px !important; }
+
+  /* Skills cards grid stacked */
+  .services-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+
+  /* Reduce ring size on very small screens */
+  .ring-svg { width: 120px !important; height: 120px !important; }
+}
+
+/* ══════════════════════════════════════
+   XS  ≤ 480px
+══════════════════════════════════════ */
+@media (max-width: 480px) {
+  section { padding-left: 14px !important; padding-right: 14px !important; }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+
+  /* Marquee logos smaller */
+  .marquee-logo { transform: scale(0.75) !important; }
+
+  /* Flip cards full height auto */
+  .services-flip-card { height: auto !important; min-height: 340px !important; }
+}

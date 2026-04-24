@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(npm uninstall *)",
+      "Bash(node -e \"const si = require\\('react-icons/si'\\); ['SiMongodb','SiExpress','SiTailwindcss','SiOpenai','SiN8n','SiLangchain'].forEach\\(k => console.log\\(k, !!si[k]\\)\\)\")",
+      "Bash(node -e \"const fa = require\\('react-icons/fa'\\); ['FaReact','FaNodeJs','FaWordpress','FaLaptopCode','FaPalette','FaBrain','FaRobot','FaEnvelope','FaWhatsapp','FaLinkedinIn','FaGithub','FaGraduationCap','FaTrophy','FaMobileAlt','FaLayerGroup','FaCode'].forEach\\(k => console.log\\(k, !!fa[k]\\)\\)\")",
+      "WebFetch(domain:talha-riaz.vercel.app)",
+      "WebSearch",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}
